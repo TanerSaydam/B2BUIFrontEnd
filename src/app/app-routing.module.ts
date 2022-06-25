@@ -5,6 +5,7 @@ import { DetailComponent } from './ui/home/detail/detail.component';
 import { HomeComponent } from './ui/home/home.component';
 import { LayoutsComponent } from './ui/layouts/layouts.component';
 import { LoginComponent } from './ui/login/login.component';
+import { OrderDetailComponent } from './ui/order/order-detail/order-detail.component';
 import { OrderComponent } from './ui/order/order.component';
 
 const routes: Routes = [
@@ -26,6 +27,11 @@ const routes: Routes = [
         path: 'order',
         component: OrderComponent,
         loadChildren: ()=> import("./ui/order/order.module").then(m=> m.OrderModule)
+      },
+      {
+        path: 'order-detail/:id',
+        component: OrderDetailComponent,
+        loadChildren: ()=> import("./ui/order/order-detail/order-detail.module").then(m=> m.OrderDetailModule)
       },
       {
         path: 'basket',

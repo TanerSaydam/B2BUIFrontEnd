@@ -13,6 +13,7 @@
                         <th>Adet</th>
                         <th>Birim Fiyat</th>
                         <th>Toplam</th>
+                        <th>İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,9 @@
                         <td>10</td>
                         <td>100</td>
                         <td>1000</td>
+                        <td>
+                          <button class="btn btn-danger" [swal]="deleteSwal">Sil</button>
+                        </td>
                     </tr>
                 </tbody>
                 </table>
@@ -37,3 +41,14 @@
   </div><!--/.container-->
 
 </section>
+
+
+<swal
+  #deleteSwal
+  title="Sil?"
+  text="Ürünü sepetten silmek istiyor musunuz?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{ confirmButtonText: 'Sil', cancelButtonText: 'Vazgeç' }"
+  ></swal>
