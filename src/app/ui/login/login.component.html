@@ -1,0 +1,30 @@
+<section id="feature" class="feature">
+  <div class="container">
+    <div class="section-header">
+      <h2>Giriş Sayfası</h2>
+    </div>
+    <!--/.section-header-->
+    <div class="feature-content">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form #loginForm="ngForm" autocomplete="off">
+        <div class="form-group">
+          <label for="" class="label-control">Mail Adresi</label>
+          <input type="email" ngModel name="email" #email required email class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="" class="label-control">Şifre</label>
+          <input type="password" ngModel name="password" #password required class="form-control">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" (click)="loginForm" [disabled]="!loginForm.valid">Giriş Yap</button>
+        </div>
+      </form>
+      </div>
+      <div class="col-md-4"></div>
+
+    </div>
+  </div>
+  <!--/.container-->
+
+</section>
