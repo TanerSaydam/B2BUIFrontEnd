@@ -2,30 +2,32 @@
   <div class="container">
     <div class="section-header">
       <h2>Ürün Detayları</h2>
-    </div><!--/.section-header-->
+    </div>
+    <!--/.section-header-->
     <div class="feature-content">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="single-feature">
-                                    <img src="assets/images/features/f1.jpg" alt="feature image">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group text-center">
-                            <label for="" class="label-control">Adet</label>
-                            <input type="text" class="form-control text-center" value="1">
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-block">Sepete Ekle</button>
-                        </div>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row">
+            <div class="col-md-6" *ngFor="let image of productImages">
+              <div class="single-feature">
+                <img src="https://b2b.admin.ecnorow.com/assets/img/{{ image.imageUrl }}" alt="feature image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2" *ngIf="isAuth">
+          <div class="form-group text-center">
+            <label for="" class="label-control">Adet</label>
+            <input type="text" class="form-control text-center" [(ngModel)]="quantity" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" (click)="addBasket()" [disabled]="quantity <= 0">Sepete Ekle</button>
+          </div>
+        </div>
+      </div>
 
     </div>
-  </div><!--/.container-->
+  </div>
+  <!--/.container-->
 
 </section>

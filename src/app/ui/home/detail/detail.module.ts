@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail.component';
 import { Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes=[
   {
@@ -15,7 +16,8 @@ const routes: Routes=[
     DetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     DetailComponent

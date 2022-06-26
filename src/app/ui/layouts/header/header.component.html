@@ -36,7 +36,7 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="dropdown">
-                            <a routerLink="/basket" class="dropdown-toggle" data-toggle="dropdown" >
+                            <a *ngIf="isAuth" routerLink="/basket" class="dropdown-toggle" data-toggle="dropdown" >
                                 <span class="lnr lnr-cart"></span>
                   <span class="badge badge-bg-1"></span>
                             </a>
@@ -59,10 +59,10 @@
                 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
                         <li class="" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a>Ana Sayfa</a></li>
-                        <li class="" routerLink="/order" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Siparişler</a></li>
-                        <li class="" routerLink="/login" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Giriş</a></li>
-                        <li class=""><a href="/login">Admin Girişi</a></li>
-                        <li class=""><a (click)="logout()">Çıkış</a></li>
+                        <li *ngIf="isAuth" class="" routerLink="/order" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Siparişler</a></li>
+                        <li *ngIf="!isAuth" class="" routerLink="/login" routerLinkActive="active" routerLinkOptions="{exact: true}"><a>Giriş</a></li>
+                        <li class=""><a href="http://localhost:4200/" target="_blank">Admin Girişi</a></li>
+                        <li *ngIf="isAuth" class=""><a (click)="logout()">Çıkış</a></li>
                     </ul><!--/.nav -->
                 </div><!-- /.navbar-collapse -->
             </div><!--/.container-->

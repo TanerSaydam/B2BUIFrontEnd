@@ -17,14 +17,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Koltuk Takımı</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>1000</td>
+                    <tr *ngFor="let basket of baskets let index = index">
+                        <td [innerText]="index + 1"></td>
+                        <td [innerText]="basket.productName"></td>
+                        <td [innerText]="basket.quantity"></td>
+                        <td [innerText]="basket.price |currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
+                        <td [innerText]="basket.total |currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
                         <td>
-                          <button class="btn btn-danger" [swal]="deleteSwal">Sil</button>
+                          <button class="btn btn-danger" [swal]="deleteSwal" (confirm)="delete(basket)">Sil</button>
                         </td>
                     </tr>
                 </tbody>
@@ -33,8 +33,8 @@
             <hr>
             <div class="form-group">
                 <div class="text-center">
-                    <h4>Toplam Tutar: </h4> 1000
-                    <button class="btn btn-primary btn-block">Sipariş Oluştur</button>
+                    <h4>Toplam Tutar: </h4> {{total | currency: 'TRY':'symbol-narrow':'1.2-2'}}
+                    <button *ngIf="baskets.length>0" class="btn btn-primary btn-block" [swal]="createSwal" (confirm)="createOrder()">Sipariş Oluştur</button>
                 </div>
             </div>
     </div>
@@ -42,6 +42,16 @@
 
 </section>
 
+
+<swal
+  #createSwal
+  title="Sipariş Oluştur?"
+  text="Sipariş oluşturmak istiyor musunuz?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{ confirmButtonText: 'Sipariş Oluştur', cancelButtonText: 'Vazgeç' }"
+  ></swal>
 
 <swal
   #deleteSwal

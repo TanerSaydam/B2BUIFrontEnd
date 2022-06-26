@@ -17,7 +17,7 @@
           <input type="password" ngModel name="password" #password required class="form-control">
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" (click)="loginForm" [disabled]="!loginForm.valid">Giriş Yap</button>
+          <button class="btn btn-primary btn-block" (click)="login(loginForm)" [disabled]="!loginForm.valid">Giriş Yap</button>
         </div>
       </form>
       </div>

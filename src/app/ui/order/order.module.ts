@@ -4,6 +4,8 @@ import { OrderComponent } from './order.component';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderDetailModule } from './order-detail/order-detail.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { OrderPipe } from './pipe/order.pipe';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes= [
   {
@@ -14,12 +16,14 @@ const routes: Routes= [
 
 @NgModule({
   declarations: [
-    OrderComponent
+    OrderComponent,
+    OrderPipe
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     OrderDetailModule,
+    FormsModule,
     SweetAlert2Module.forChild()
   ],
   exports: [

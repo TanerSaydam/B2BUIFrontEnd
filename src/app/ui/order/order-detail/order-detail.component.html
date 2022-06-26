@@ -19,9 +19,9 @@
                   <main>
                     <div class="row contacts">
                       <div class="col invoice-to">
-                        <h2 class="to">Tarih: 25.06.2022</h2>
-                        <h2 class="to">Sipariş Numarası: S00000000001</h2>
-                        <h2 class="to">Sipariş Durumu: <strong>Onay Bekliyor</strong></h2>
+                        <h2 class="to">Tarih: {{order.date | date:'dd.MM.yyyy'}}</h2>
+                        <h2 class="to">Sipariş Numarası: {{ order.orderNumber }}</h2>
+                        <h2 class="to">Sipariş Durumu: <strong>{{ order.status }}</strong></h2>
                       </div>
                     </div>
                     <table>
@@ -35,21 +35,21 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="no">1</td>
+                        <tr *ngFor="let orderDetail of orderDetails let index = index">
+                          <td class="no" [innerText]="index + 1"></td>
                           <td class="text-left">
-                            <h3>Koltuk Takımı</h3>
+                            <h3 [innerText]="orderDetail.productName"></h3>
                           </td>
-                          <td class="unit">1</td>
-                          <td class="qty">100</td>
-                          <td class="total">$0.00</td>
+                          <td class="unit" [innerText]="orderDetail.quantity"></td>
+                          <td class="qty" [innerText]="orderDetail.price | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
+                          <td class="total" [innerText]="orderDetail.total | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
                         </tr>
                       </tbody>
                       <tfoot>
                         <tr>
                           <td colspan="2"></td>
                           <td colspan="2">Toplam</td>
-                          <td>$6,500.00</td>
+                          <td [innerText]="order.total | currency: 'TRY':'symbol-narrow':'1.2-2'"></td>
                         </tr>
                       </tfoot>
                     </table>

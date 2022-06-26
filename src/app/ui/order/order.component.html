@@ -5,6 +5,9 @@
     </div>
     <div class="feature-content">
       <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="filterText" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
         <table class="table">
           <thead>
             <tr>
@@ -18,16 +21,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Onay bekliyor</td>
-              <td>25.06.2022</td>
+            <tr *ngFor="let order of orders
+            | orderPipe: filterText
+            let index = index">
+              <td [innerText]="index + 1"></td>
+              <td [innerText]="order.status"></td>
+              <td [innerText]="order.date | date:'dd.MM.yyyy'"></td>
               <td>
-                <a routerLink="/order-detail/4">S00000000001</a></td>
-              <td>100</td>
-              <td>1000</td>
+                <a routerLink="/order-detail/{{ order.id }}" [innerText]="order.orderNumber"></a></td>
+                <td [innerText]="order.quantity"></td>
+                <td [innerText]="order.total | currency:'TRY':'symbol-narrow':'1.2-2'"></td>
               <td>
-                <button class="btn btn-danger" [swal]="deleteSwal">Siparişi Sil</button>
+                <button class="btn btn-danger" *ngIf="order.status == 'Onay Bekliyor' || order.status == 'Reddedilen'" [swal]="deleteSwal" (confirm)="delete(order)">Siparişi Sil</button>
               </td>
             </tr>
           </tbody>

@@ -4,19 +4,19 @@
       <h2>Ürünler</h2>
     </div><!--/.section-header-->
     <div class="new-arrivals-content">
-      <input type="text" class="form-control" placeholder="Aranacak kelimeyi yazın">
+      <input type="text" class="form-control" placeholder="Aranacak kelimeyi yazın" [(ngModel)]="filterText" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="new-arrivals-content">
       <div class="row">
-        <div class="col-md-3 col-sm-4">
+        <div class="col-md-3 col-sm-4" *ngFor="let product of products | productPipe: filterText">
           <div class="single-new-arrival">
             <div class="single-new-arrival-bg">
-              <img src="assets/images/collection/arrivals1.png" alt="new-arrivals images">
+              <img src="https://b2b.admin.ecnorow.com/assets/img/{{ product.mainImageUrl}}" alt="new-arrivals images">
               <div class="single-new-arrival-bg-overlay"></div>
             </div>
-            <h4><a routerLink="detail/4">wooden chair</a></h4>
-            <p class="arrival-product-price text-danger"><del>$65.00</del></p>
-            <p class="arrival-product-price">$65.00</p>
+            <h4><a routerLink="detail/{{ product.id }}" [innerText]="product.name"></a></h4>
+            <p class="arrival-product-price text-danger"><del [innerText]="product.price | currency: 'TRY':'symbol-narrow':'1.2-2'"></del></p>
+            <p class="arrival-product-price" [innerText]="(product.discount > 0 ? (product.price * (100-product.discount))/100 : product.price) | currency: 'TRY':'symbol-narrow':'1.2-2'"></p>
           </div>
         </div>
       </div>
